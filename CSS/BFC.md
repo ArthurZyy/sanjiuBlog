@@ -1,4 +1,4 @@
-# 必备知识 
+# 必备知识
 ## BOX：CSS布局的基本单位
 ### box类型
 * **block-level box**: display 属性为 **block**, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context；
