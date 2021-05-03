@@ -23,3 +23,30 @@
 
 # nextTick
 > 设置一个回调，用于异步执行
+
+# mixins
+
+# methods 
+1. methods 会逐个复制到 实例上
+2. methods 方法会使用 bind 绑定实例作用域，确保作用域不被修改
+
+# filter  
+> fitler 其实就是从组件选项 filters 获取你设置的某个filter，并调用，然后使用你函数执行的返回值渲染
+
+# Vue 源码的简短的总结
+1. 封装了很多常用的函数！
+2. 真的用了很多设计模式
+3. 使用很多闭包！
+4. 使用很多标志位
+
+# 思路
+1. 依赖收集
+2. 依赖更新
+3. Virtual DOM ，dom 节点 生成虚拟Vnode 节点
+4. Compile， 模板编译
+5. Diff、Patch， 节点比较更新
+6. NextTick ，延迟执行回调
+7. Render， 渲染机制
+8. LifeCircle ，生命周期
+9. Model ，双向绑定
+10. Event ，事件机制
