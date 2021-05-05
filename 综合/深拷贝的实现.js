@@ -1,3 +1,4 @@
+// https://github.com/ConardLi/ConardLi.github.io/blob/master/demo/deepClone/src/clone_6.js
 const mapTag = '[object Map]';
 const setTag = '[object Set]';
 const arrayTag = '[object Array]';
