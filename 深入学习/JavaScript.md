@@ -1,7 +1,8 @@
 ## 参考
-[JavaScript深入系列15篇正式完结！](https://juejin.cn/post/6844903479429824526)
-[深入理解JavaScript作用域和作用域链](https://juejin.cn/post/6844903797135769614)
-## avaScript的执行
+* [JavaScript深入系列15篇正式完结！](https://juejin.cn/post/6844903479429824526)
+* [深入理解JavaScript作用域和作用域链](https://juejin.cn/post/6844903797135769614)
+* [JavaScript：彻底理解同步、异步和事件循环(Event Loop)](https://segmentfault.com/a/1190000004322358)  
+## JavaScript的执行
 ##### 解释阶段：
 - 词法分析
 - 语法分析
@@ -346,3 +347,89 @@ var arrayLike = {
 }
 ```
 > Arguments 对象只定义在函数体中，包括了函数的参数和其他属性。在函数体中，arguments 指代该函数的 Arguments 对象。
+
+## 十三、Promise
+```javascript
+let p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log('ok');
+        resolve('is ok');
+    });
+});
+
+p.then((data) => {
+    console.log('resolved',data);
+    console.log(somedata); //此处的somedata未定义
+}).catch((err) => {
+    console.log('rejected',err);
+});
+```
+```javascript
+let Promise1 = new Promise(function(resolve, reject){})
+let Promise2 = new Promise(function(resolve, reject){})
+let Promise3 = new Promise(function(resolve, reject){})
+
+let p = Promise.all([Promise1, Promise2, Promise3])
+
+p.then(function(){
+  console.log('三个都成功则成功')
+}, function(){
+  console.log('只要有失败，则失败')
+})
+```
+```javascript
+ //请求某个图片资源
+function requestImg(){
+    var p = new Promise((resolve, reject) => {
+        var img = new Image();
+        img.onload = function(){
+            resolve(img);
+        }
+        img.src = '图片的路径';
+    });
+    return p;
+}
+//延时函数，用于给请求计时
+function timeout(){
+    var p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject('图片请求超时');
+        }, 5000);
+    });
+    return p;
+}
+Promise.race([requestImg(), timeout()]).then((data) =>{
+    console.log(data);
+}).catch((err) => {
+    console.log(err);
+});
+```
+[async参考](async结合Promise.js)
+
+## 十四、同步、异步、事件循环(Event Loop)
+#### 1.单线程
+1. 主线程：负责解释和执行JavaScript代码的线程
+2. 工作线程
+   > 处理AJAX请求的线程、处理DOM事件的线程、定时器线程、读写文件的线程(例如在Node.js中)等等。
+
+#### 2.同步和异步
+> **同步**：如果在函数A返回的时候，调用者就能够得到预期结果(即拿到了预期的返回值或者看到了预期的效果)，那么这个函数就是同步的。  
+> **异步**：如果在函数A返回的时候，调用者还不能够得到预期结果，而是需要在将来通过一定的手段得到，那么这个函数就是异步的。
+
+#### 3.异步过程的构成要素
+> 主线程发起一个异步请求，相应的工作线程接收请求并告知主线程已收到(异步函数返回)；主线程可以继续执行后面的代码，同时工作线程执行异步任务；工作线程完成工作后，通知主线程；主线程收到通知后，执行一定的动作(调用回调函数)。
+* 发起函数(或叫注册函数)`A`
+* 回调函数`callbackFn`
+
+#### 4.消息队列和事件循环
+* > 工作线程将消息放到消息队列，主线程通过事件循环过程去取消息。  
+* > **消息队列**：消息队列是一个先进先出的队列，它里面存放着各种消息。
+* > **事件循环**：事件循环是指主线程重复从消息队列中取消息、执行的过程。
+* > **消息**：注册异步任务时添加的回调函数。
+* > 消息队列中的每条消息实际上都对应着一个事件
+
+> **主线程只会做一件事情，就是从消息队列里面取消息、执行消息，再取消息、再执行。** 当消息队列为空时，就会等待直到消息队列变成非空。而且主线程只有在将当前的消息执行完成后，才会去取下一个消息。这种机制就叫做 **事件循环机制** ，取一个消息并执行的过程叫做一次循环。
+
+![](https://segmentfault.com/img/bVxLvF)
+
+#### 5.异步与事件
