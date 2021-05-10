@@ -50,3 +50,28 @@
 8. LifeCircle ，生命周期
 9. Model ，双向绑定
 10. Event ，事件机制
+
+# 父组件可以监听到子组件的生命周期吗？
+### 首先，什么是@hook
+1. git的hook
+> git的hook机制是 在一些常用的git命令之后去触发一些开发者自定义的脚本（这些脚本存在于本地，在.git/hooks下)。
+
+2. 从VUE源码看hook
+> Vue的各生命周期，其实就是Vue开发者规定的一些hook，和git里面规定的hook类似，你只要往hook里面填自定义内容，它就可以执行。如vue实例里的beforeCreate,created,mounted等，都是hook。  
+> 简单来说，**hook其实就是一种回调函数**，只不过这种回调函数的名称已经被固定，内容不固定，且函数名称作为了一个接口被暴露出去。这样也更好了进行了抽象化：将经常变化的内容抽象暴露出去，将固定不变的代码进行封装。
+
+3. 简单应用
+```javascript
+// 处理组件内定时器的步骤
+<script>
+  export default {
+    mounted() {
+      const timer = setInterval(() => { ... }, 1000);
+    // $once是一个函数，可以为Vue组件实例绑定一个自定义事件，但该事件只能被触发一次，触发之后随即被移除。
+      this.$once('hook:beforeDestroy', () => clearInterval(timer);)
+    }
+  };
+</script>
+```
+
+4. 当我们需要在父组件上知道子组件什么时候被创建、挂载或者是更新，特别是当为原生js库创建组件时，可以通过使用` @hook: 前缀监听生命周期中的钩子`，并指定回调函数。
