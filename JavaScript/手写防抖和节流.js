@@ -23,7 +23,7 @@ function debounce(func, wait = 50, immediate = true) {
             func.apply(context, args)
             context = args = null
         }
-    }, wait)
+    }, wait);
 
     // 这里返回的函数是每次实际调用的函数
     return function (...params) {

@@ -1,5 +1,6 @@
 ## 参考
 - [可能比文档还详细--VueRouter完全指北](https://juejin.cn/post/6844903665388486664)
+- [vue router 官方文档](https://router.vuejs.org/zh)
 
 ## 一、概念
 - 适用于vue单页面应用
