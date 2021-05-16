@@ -33,4 +33,4 @@ function convert(list) {
     return res
 }
 
-convert(list)
+console.log(JSON.stringify(convert(list)))
