@@ -25,5 +25,11 @@
 * 计算BFC的高度时，考虑BFC所包含的所有元素，连浮动元素也参与计算
 * 浮动盒区域不叠加到BFC上
 
+# BFC 特性及应用
+- 同一个bfc下外边距会折叠
+- bfc可以包含浮动元素
+- bfc可以阻止元素被浮动元素被覆盖
+
 # 参考
-[BFC原理详解](https://segmentfault.com/a/1190000006740129)
+- [BFC原理详解](https://segmentfault.com/a/1190000006740129)
+- [10 分钟理解 BFC 原理](https://zhuanlan.zhihu.com/p/25321647)
