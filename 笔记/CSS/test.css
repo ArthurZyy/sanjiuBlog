@@ -1,0 +1,27 @@
+/* transition */
+div{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: brown;
+    transition-duration: 2s;
+}
+div:hover{
+    width: 150px;
+    height: 150px;
+}
+
+/* transition */
+div{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: brown;
+    transition-duration: 2s;
+    transition-property: width;
+    transition-timing-function: ease;
+}
+div:hover{
+    width: 150px;
+    height: 150px;
+}

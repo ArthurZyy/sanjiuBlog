@@ -1,5 +1,6 @@
 # 参考
-[30 道 Vue 面试题，内含详细讲解（涵盖入门到精通，自测 Vue 掌握程度）](https://juejin.cn/post/6844903918753808398)
+- [30 道 Vue 面试题，内含详细讲解（涵盖入门到精通，自测 Vue 掌握程度）](https://juejin.cn/post/6844903918753808398)
+- [vue-cli@2.0 的简单分析](https://juejin.cn/post/6844903622216548359)
 
 # 响应式
 1. Object.defineProperty - get ，用于 依赖收集
