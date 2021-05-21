@@ -432,4 +432,4 @@ Promise.race([requestImg(), timeout()]).then((data) =>{
 
 ![](https://segmentfault.com/img/bVxLvF)
 
-#### 5.异步与事件
+<!-- #### 5.异步与事件 -->
