@@ -31,4 +31,4 @@ Function.prototype.myBind = function (context, ...args) {
     // 实现继承的方式二: 使用Object.create
     result.prototype = Object.create(this.prototype)
     return result
-};
+}; 
