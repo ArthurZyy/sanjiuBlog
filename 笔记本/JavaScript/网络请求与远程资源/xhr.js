@@ -1,7 +1,10 @@
+// --------------------------------------------------
+// xhr
+
 // 原生浏览器通信
 let xhr = new XMLHttpRequest();
 
-xhr.onreadystatechange = function () {
+xhr.onload = function () {
     if (xhr.readyState != 4) {
         return
     }
@@ -19,6 +22,19 @@ xhr.onreadystatechange = function () {
         }
 
     } catch (error) {
+
+    }
+}
+
+xhr.onprogress = function (event) {
+    let divStatus = document.getElementById("status");
+    // lengthComputable 是一个布尔值，表示进度信息是否可用；
+    // position 是接收到的字节数；
+    // totalSize 是响应的 ContentLength 头部定义的总字节数。
+    if (event.lengthComputable) {
+        divStatus.innerHTML = "Received " + event.position + " of " +
+            event.totalSize +
+            " bytes";
 
     }
 }
